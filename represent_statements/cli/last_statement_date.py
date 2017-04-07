@@ -11,10 +11,9 @@ from represent_statements.models import Statement
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Load statements from CSV into a database.")
+        description="Get the date of the latest statement in the database.")
     parser.add_argument('--database', default=os.environ.get('DB_URL'),
         help="Database URL.")
-    parser.add_argument('--district', help="District.", action='append')
 
     args = parser.parse_args()
     engine = create_engine(args.database)
