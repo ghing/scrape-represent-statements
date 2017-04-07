@@ -35,10 +35,14 @@ def main():
         row['date'] = date_obj
         statement = Statement(**row)
         try:
-            session.add(statement)
-            session.flush()
+            with session.begin_nested():
+                session.add(statement)
+
         except IntegrityError:
-            session.rollback()
+            # Skip items we've already seen.
+            # We assume the IntegrityError is because of a failure of the
+            # uniqueness constraint
+            pass
 
     session.commit()
 
