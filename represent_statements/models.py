@@ -1,4 +1,7 @@
-from sqlalchemy import Column, Date, Integer, String, UniqueConstraint
+import datetime
+
+from sqlalchemy import (Column, Date, DateTime, Integer, String,
+    UniqueConstraint)
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -15,6 +18,7 @@ class Statement(Base):
     date = Column(Date)
     title = Column(String)
     url = Column(String)
+    created = Column(DateTime, default=datetime.datetime.utcnow)
 
     __table_args__ = (
         UniqueConstraint(
