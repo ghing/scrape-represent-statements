@@ -41,6 +41,7 @@ setup(
                 'load_statements=represent_statements.cli.load_statements:main',
                 'export_statements=represent_statements.cli.export_statements:main',
                 'last_statement_date=represent_statements.cli.last_statement_date:main',
+                'last_created_date=represent_statements.cli.last_created_date:main',
             ],
         },
         keywords='propublica congress',

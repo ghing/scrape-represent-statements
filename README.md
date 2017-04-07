@@ -22,7 +22,9 @@ To scrape all statements matching the search `Town Hall` since 2017-02-09:
 All together now
 ----------------
 
-    scrape_statements --since `last_statement_date` "Town Hall" | load_statements
+    scrape_statements --since $(last_created_date --subtract-days=1) "Town Hall" | load_statements
+
+We use `last_created_date --subtract-days=1` to get the `--since` argument to `scrape_statements` so we only download statements that are possibly not in the database.  We specify `--subtract-days=1` in order to accomodate time zone differences since we store dates in UTC in the database.
 
 Configuration
 -------------
@@ -43,6 +45,6 @@ Database migrations
 
 To run database migrations:
 
-    DB_URL=postgresql:///represent_statements alembic upgrade head 
+    DB_URL=postgresql:///represent_statements alembic upgrade head
 
 
